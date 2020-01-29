@@ -1,9 +1,10 @@
 import "./theme.scss"
 import Link from 'next/link'
 import Router from 'next/router'
-import {aboutRoute, productRoute} from '../routes'
+import {aboutRoute, productRouteProps} from '../routes'
 
 const Index = () => {
+
   return (
     <div className='container' >
       <div className="row">
@@ -15,7 +16,7 @@ const Index = () => {
         </Link>
       </div>
       <div className="row py-3">
-        <Link href={productRoute({id: 1})}>
+        <Link  {...productRouteProps({id: 123})}>
           <a className='btn btn-primary text-white'>Product 1 page</a>
         </Link>
       </div>
