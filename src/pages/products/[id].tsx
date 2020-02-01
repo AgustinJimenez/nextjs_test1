@@ -1,19 +1,18 @@
 import Link from 'next/link'
 import {homeRoute} from '../../routes'
-import "../theme.scss"
+import DashboardLayout from '../../layouts/dashboard'
 
 const Product = (props: any) => {
-    let {id} = props.url.query
-
-    console.log('PRODUCTS ID ===> ', {id})
+    var id = null
+    console.log('PRODUCTS ID ===> ', {props})
 
 return (
-    <div>
-        <p>This is the product page</p>
+    <DashboardLayout>
+        <p>This is the product page id={id}</p>
         <Link href={homeRoute()}>
             <a className='btn btn-primary'>Go Home</a>
         </Link>
-    </div>
+    </DashboardLayout>
 )
 }
 export default Product
