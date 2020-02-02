@@ -2,7 +2,7 @@ import Link from 'next/link'
 import Router from 'next/router'
 import {aboutRoute, productRouteProps} from '../routes'
 import DashboardLayout from '../layouts/dashboard'
-import { Grid } from '@material-ui/core'
+import { Grid, Button } from '@material-ui/core'
 
 
 const Index = () => {
@@ -12,12 +12,16 @@ const Index = () => {
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Link href={aboutRoute()}>
-                <a className='btn btn-primary text-white'>About Page</a>
+              <Button variant="contained" color="primary">
+                About Page
+              </Button>
             </Link>
           </Grid> 
           <Grid item xs={12}>
             <Link {...productRouteProps({id: 123})}  >
-              <a className='btn btn-primary text-white'>Product 1 page</a>
+              <Button variant="contained" color="primary">
+                Product 1 page
+              </Button>  
             </Link>
           </Grid>
 
