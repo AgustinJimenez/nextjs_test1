@@ -1,18 +1,19 @@
 import Link from 'next/link'
 import {homeRoute} from '../../routes'
 import DashboardLayout from '../../layouts/dashboard'
+import { withRouter } from 'next/router'
 
-const Product = (props: any) => {
-    var id = null
-    console.log('PRODUCTS ID ===> ', {props})
+let Product = (props: any) => {
+    const { id } = props.router.query
+    //console.log('PRODUCT ===> ', props)
 
-return (
-    <DashboardLayout>
-        <p>This is the product page id={id}</p>
-        <Link href={homeRoute()}>
-            <a className='btn btn-primary'>Go Home</a>
-        </Link>
-    </DashboardLayout>
-)
+    return (
+        <DashboardLayout>
+            <p>This is the product page {id}</p>
+            <Link href={homeRoute()}>
+                <a className='btn btn-primary'>Go Home</a>
+            </Link>
+        </DashboardLayout>
+    )
 }
-export default Product
+export default withRouter(Product)

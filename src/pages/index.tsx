@@ -16,7 +16,7 @@ const Index = () => {
             </Link>
           </Grid> 
           <Grid item xs={12}>
-            <Link  href='/products/[id]' as='/products/132'/* {...productRouteProps({id: 123})} */ >
+            <Link {...productRouteProps({id: 123})}  >
               <a className='btn btn-primary text-white'>Product 1 page</a>
             </Link>
           </Grid>
