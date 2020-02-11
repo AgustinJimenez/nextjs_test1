@@ -1,8 +1,10 @@
-import axios, { AxiosRequestConfig, AxiosResponse } from 'axios'
+import fetch from 'isomorphic-unfetch'
 
-const Request = async (options: AxiosRequestConfig) => {
-    let response: AxiosResponse = await axios(options)
-    return response.data
+const request = async (options: any) => {
+    let res = await fetch(options)
+    //console.log('RESPONSE ===> ', {res})
+    let json = await res.json()
+    return json
 }
 
-export default Request
+export default request

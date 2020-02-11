@@ -1,11 +1,11 @@
-import App from 'next/app'
-import DashboardLayout from '../layouts/dashboard'
+//import App from 'next/app'
+import Layout from '../layouts'
 
 const MyApp = ({ Component, pageProps }: any) => {
     return (
-        <DashboardLayout>
+        <Layout>
             <Component {...pageProps} />
-        </DashboardLayout>
+        </Layout>
     )
 }
 

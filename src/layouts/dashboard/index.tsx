@@ -11,14 +11,16 @@ import IconButton from '@material-ui/core/IconButton'
 import Badge from '@material-ui/core/Badge'
 import Container from '@material-ui/core/Container'
 import Grid from '@material-ui/core/Grid'
-import Paper from '@material-ui/core/Paper'
-import Link from '@material-ui/core/Link'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
+import Link from 'next/link'
 import MenuIcon from '@material-ui/icons/Menu'
 import ChevronLeftIcon from '@material-ui/icons/ChevronLeft'
 import NotificationsIcon from '@material-ui/icons/Notifications'
 import { mainListItems, secondaryListItems } from './listItems'
 import Head from 'next/head'
 import useStyles from './styles'
+import { ListItemIcon } from '@material-ui/core'
 
 export default (props: any) => {
     const classes = useStyles()
@@ -30,7 +32,7 @@ export default (props: any) => {
     return (
         <div className={classes.root}>
             <Head>
-                <title>Renault Paraguay</title>
+                <title>{process.env.app_name}</title>
                 <meta charSet='utf-8' />
                 <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
                 <meta name='description' content='Hello World Here' />
@@ -65,11 +67,26 @@ export default (props: any) => {
                 }}
                 open={open}
             >
-                <div className={classes.toolbarIcon}>
-                    <IconButton onClick={handleDrawerClose}>
-                        <ChevronLeftIcon />
-                    </IconButton>
-                </div>
+                <Grid container className={classes.toolbarIcon}>
+                    <ListItem>
+                        <ListItemText
+                            primary={
+                                <Link href='/'>
+                                    <a>
+                                        <Typography align='center' component='h2' variant='h6'>
+                                            {process.env.app_name}
+                                        </Typography>
+                                    </a>
+                                </Link>
+                            }
+                        />
+                        <ListItemIcon onClick={handleDrawerClose}>
+                            <IconButton onClick={handleDrawerClose}>
+                                <ChevronLeftIcon />
+                            </IconButton>
+                        </ListItemIcon>
+                    </ListItem>
+                </Grid>
                 <Divider />
                 <List>{mainListItems}</List>
                 <Divider />

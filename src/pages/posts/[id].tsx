@@ -4,11 +4,11 @@ import { homeRoute } from '../../routes'
 import { withRouter } from 'next/router'
 import { Typography, Button, Grid, Card, CardContent, CardActions } from '@material-ui/core'
 import { postRouteProps } from '../../routes'
-import Request from '../../utils/Request'
+import request from '../../utils/request'
 import styles from './styles'
 
 const fetchData = async ({ id, setPost }: any) => {
-    let post = await Request({ url: `https://jsonplaceholder.typicode.com/posts/${id}` })
+    let post = await request({ url: `https://jsonplaceholder.typicode.com/posts/${id}` })
     setPost(post)
     console.log('FETCH-DATA-POST ===> ', { post })
 }

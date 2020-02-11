@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { homeRoute } from '../routes'
+import { homeRoute } from '../../routes'
 import { Typography, Grid, Button } from '@material-ui/core'
 
 const About = () => (
