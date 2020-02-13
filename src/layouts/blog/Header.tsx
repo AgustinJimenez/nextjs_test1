@@ -7,6 +7,7 @@ import Link from '@material-ui/core/Link'
 import Grid from '@material-ui/core/Grid'
 import LangButton from './components/LangButton'
 import LoginButton from './components/LoginButton'
+import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles(theme => ({
     toolbar: {
@@ -30,7 +31,7 @@ const Header = (props: any) => {
     const { sections, title } = props
 
     return (
-        <React.Fragment>
+        <Container maxWidth='lg'>
             <Toolbar className={classes.toolbar}>
                 <Grid container /* spacing={3} */>
                     <Grid item container xs={12} sm={9} justify='flex-start' alignItems='center'>
@@ -57,7 +58,7 @@ const Header = (props: any) => {
                     </Link>
                 ))}
             </Toolbar>
-        </React.Fragment>
+        </Container>
     )
 }
 

@@ -90,10 +90,12 @@ const Blog = ({ app_name, photos }) => {
     return (
         <React.Fragment>
             <CssBaseline />
-            <Container maxWidth='lg'>
-                <Header title={app_name} sections={sections} />
-                <main>
-                    <MainFeaturedPost post={mainFeaturedPost} />
+
+            <Header title={app_name} sections={sections} />
+
+            <main>
+                <MainFeaturedPost />
+                <Container maxWidth='lg'>
                     <Grid container spacing={4}>
                         {featuredPosts.map(post => (
                             <FeaturedPost key={post.title} post={post} />
@@ -103,8 +105,9 @@ const Blog = ({ app_name, photos }) => {
                         <Main title='From the firehose' posts={posts} />
                         <Sidebar title={sidebar.title} description={sidebar.description} archives={sidebar.archives} social={sidebar.social} />
                     </Grid>
-                </main>
-            </Container>
+                </Container>
+            </main>
+
             <Footer title='Footer' description='Something here to give the footer a purpose!' />
         </React.Fragment>
     )

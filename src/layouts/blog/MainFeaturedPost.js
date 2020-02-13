@@ -1,79 +1,47 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
-import Paper from '@material-ui/core/Paper'
-import Typography from '@material-ui/core/Typography'
-import Grid from '@material-ui/core/Grid'
-import Link from '@material-ui/core/Link'
-import { Carousel } from 'react-responsive-carousel'
-import 'react-responsive-carousel/lib/styles/carousel.min.css'
-
-const useStyles = makeStyles(theme => ({
-    mainFeaturedPost: {
-        position: 'relative',
-        backgroundColor: theme.palette.grey[800],
-        color: theme.palette.common.white,
-        marginBottom: theme.spacing(4),
-        backgroundImage: 'url(https://source.unsplash.com/random)',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-        backgroundPosition: 'center',
-    },
-    overlay: {
-        position: 'absolute',
-        top: 0,
-        bottom: 0,
-        right: 0,
-        left: 0,
-        backgroundColor: 'rgba(0,0,0,.3)',
-    },
-    mainFeaturedPostContent: {
-        position: 'relative',
-        padding: theme.spacing(3),
-        [theme.breakpoints.up('md')]: {
-            padding: theme.spacing(6),
-            paddingRight: 0,
-        },
-    },
-}))
+import Container from '@material-ui/core/Container'
+import IconButton from '@material-ui/core/IconButton'
+import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
+import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
+import Carousel from 'nuka-carousel'
+const Sliders = ['images/slide1.png', 'images/slide2.jpg', 'images/slide3.png']
 
 export default function MainFeaturedPost(props) {
-    const classes = useStyles()
-    const { post } = props
-
     return (
-        <React.Fragment>
-            <Carousel showThumbs={false} showStatus={false} stopOnHover={false} interval={6000} width='100%' autoPlay infiniteLoop>
-                <img src='images/slide1.png' style={{ width: '100%', height: '100%' }} />
-                <img src='images/slide2.jpg' style={{ width: '100%', height: '100%' }} />
-                <img src='images/slide3.png' style={{ width: '100%', height: '100%' }} />
+        <Container maxWidth='xl' disableGutters>
+            <Carousel
+                autoplay
+                autoplayInterval={6000}
+                easing='easePolyIn'
+                heightMode='first'
+                initialSlideHeight={400}
+                renderCenterRightControls={control => (
+                    <IconButton color='default' onClick={control.nextSlide}>
+                        <ArrowForwardIosIcon style={{ color: 'white' }} />
+                    </IconButton>
+                )}
+                renderCenterLeftControls={control => (
+                    <IconButton color='default' onClick={control.previousSlide}>
+                        <ArrowBackIosIcon style={{ color: 'white' }} />
+                    </IconButton>
+                )}
+                defaultControlsConfig={{
+                    pagingDotsStyle: {
+                        fill: 'white',
+                    },
+                }}
+            >
+                {Sliders.map((src, key) => (
+                    <img
+                        src={src}
+                        key={key}
+                        style={{ height: '100%' }}
+                        //style={{ height: 'inherit' }}
+                    />
+                ))}
             </Carousel>
-
-            {/* 
-<Paper className={classes.mainFeaturedPost} style={{ backgroundImage: `url(${post.image})` }}>
-      {<img style={{ display: 'none' }} src={post.image} alt={post.imageText} />}
-      <div className={classes.overlay} />
-      <Grid container>
-        <Grid item md={6}>
-          <div className={classes.mainFeaturedPostContent}>
-            <Typography component="h1" variant="h3" color="inherit" gutterBottom>
-              {post.title}
-            </Typography>
-            <Typography variant="h5" color="inherit" paragraph>
-              {post.description}
-            </Typography>
-            <Link variant="subtitle1" href="#">
-              {post.linkText}
-            </Link>
-          </div>
-        </Grid>
-      </Grid>
-    </Paper>
-*/}
-        </React.Fragment>
+        </Container>
     )
-}
-
-MainFeaturedPost.propTypes = {
-    post: PropTypes.object,
 }
