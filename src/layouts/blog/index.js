@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import CssBaseline from '@material-ui/core/CssBaseline'
 import Grid from '@material-ui/core/Grid'
@@ -23,23 +24,17 @@ const useStyles = makeStyles(theme => ({
 }))
 
 const sections = [
-    { title: 'Technology', url: '#' },
-    { title: 'Design', url: '#' },
-    { title: 'Culture', url: '#' },
-    { title: 'Business', url: '#' },
-    { title: 'Politics', url: '#' },
-    { title: 'Opinion', url: '#' },
-    { title: 'Science', url: '#' },
-    { title: 'Health', url: '#' },
-    { title: 'Style', url: '#' },
-    { title: 'Travel', url: '#' },
+    { title: 'QUIÉNES SOMOS', url: '/about' },
+    { title: 'SUCURSALES', url: '/branches' },
+    { title: 'TRABAJÁ CON NOSOTROS', url: '/careers' },
+    { title: 'CONTACTOS', url: '/contacts' },
 ]
 
 const mainFeaturedPost = {
     title: 'Title of a longer featured blog post',
     description:
         "Multiple lines of text that form the lede, informing new readers quickly and efficiently about what's most interesting in this post's contents.",
-    image: 'https://source.unsplash.com/random',
+    image: '/images/slide1.png',
     imgText: 'main image description',
     linkText: 'Continue reading…',
 }
@@ -49,14 +44,14 @@ const featuredPosts = [
         title: 'Featured post',
         date: 'Nov 12',
         description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random',
+        image: '/images/slide2.jpg',
         imageText: 'Image Text',
     },
     {
         title: 'Post title',
         date: 'Nov 11',
         description: 'This is a wider card with supporting text below as a natural lead-in to additional content.',
-        image: 'https://source.unsplash.com/random',
+        image: '/images/slide3.png',
         imageText: 'Image Text',
     },
 ]
@@ -87,14 +82,16 @@ const sidebar = {
     ],
 }
 
-export default props => {
+const Blog = ({ app_name, photos }) => {
+    console.log('BLOG ===> ', photos)
+
     const classes = useStyles()
 
     return (
         <React.Fragment>
             <CssBaseline />
             <Container maxWidth='lg'>
-                <Header title='Blog' sections={sections} />
+                <Header title={app_name} sections={sections} />
                 <main>
                     <MainFeaturedPost post={mainFeaturedPost} />
                     <Grid container spacing={4}>
@@ -112,3 +109,13 @@ export default props => {
         </React.Fragment>
     )
 }
+
+Blog.propTypes = {
+    app_name: PropTypes.string,
+    photos: PropTypes.array,
+}
+Blog.defaultProps = {
+    app_name: process.env.app_name,
+    photos: [],
+}
+export default Blog
