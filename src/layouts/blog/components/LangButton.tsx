@@ -5,6 +5,7 @@ import DialogTitle from '@material-ui/core/DialogTitle'
 import List from '@material-ui/core/List'
 import ListItem from '@material-ui/core/ListItem'
 import ListItemText from '@material-ui/core/ListItemText'
+import Container from '@material-ui/core/Container'
 
 const defaultLang: string = 'es'
 const languages: any = {
@@ -27,8 +28,8 @@ const LangButton = (props: any) => {
     const [pageLang, changePageLange] = React.useState(defaultLang)
 
     return (
-        <React.Fragment>
-            <Button variant='outlined' /* color='secondary' */ size='small' onClick={() => changeLangDialogState(true)}>
+        <Container disableGutters>
+            <Button fullWidth variant='outlined' /* color='secondary' */ size='small' onClick={() => changeLangDialogState(true)}>
                 Language
             </Button>
             <Dialog open={langDialogIsOpen} onClose={() => changeLangDialogState(false)}>
@@ -41,7 +42,7 @@ const LangButton = (props: any) => {
                     ))}
                 </List>
             </Dialog>
-        </React.Fragment>
+        </Container>
     )
 }
 

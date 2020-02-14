@@ -7,7 +7,6 @@ import ArrowForwardIosIcon from '@material-ui/icons/ArrowForwardIos'
 import ArrowBackIosIcon from '@material-ui/icons/ArrowBackIos'
 import Carousel from 'nuka-carousel'
 import { Grid, CardActionArea, Card, CardContent, Typography } from '@material-ui/core'
-import { title } from 'process'
 
 const Sliders = ['images/slide1.png', 'images/slide2.jpg', 'images/slide3.png']
 const useStyles = makeStyles(theme => ({
@@ -39,7 +38,7 @@ const HomePage = ({ photos = [] }) => {
                     wrapAround
                     autoplayReverse
                     heightMode='first'
-                    initialSlideHeight={400}
+                    initialSlideHeight={450}
                     renderCenterRightControls={control => (
                         <IconButton color='default' onClick={control.nextSlide}>
                             <ArrowForwardIosIcon style={{ color: 'white' }} />
@@ -76,13 +75,13 @@ const HomePage = ({ photos = [] }) => {
                                 <div className={classes.cardDetails}>
                                     <CardContent>
                                         <Typography component='h2' variant='h5'>
-                                            {title}
+                                            title
                                         </Typography>
                                         <Typography variant='subtitle1' color='textSecondary'>
-                                            {'date-->'}
+                                            date-->
                                         </Typography>
                                         <Typography variant='subtitle1' paragraph>
-                                            {'description-->'}
+                                            description-->
                                         </Typography>
                                         <Typography variant='subtitle1' color='primary'>
                                             Continue reading...
@@ -94,8 +93,8 @@ const HomePage = ({ photos = [] }) => {
                     </Grid>
                 </Grid>
                 <Grid container spacing={5} className={classes.mainGrid}>
-                    {/* <Main title='From the firehose' posts={posts} /> */}
-                    {/* <Sidebar title={sidebar.title} description={sidebar.description} archives={sidebar.archives} social={sidebar.social} /> */}
+                    {/* <Main title='From the firehose' posts={posts} />
+                    <Sidebar title={sidebar.title} description={sidebar.description} archives={sidebar.archives} social={sidebar.social} /> */}
                 </Grid>
             </Container>
         </React.Fragment>

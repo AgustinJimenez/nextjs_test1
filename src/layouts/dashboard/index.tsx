@@ -50,7 +50,7 @@ export default (props: any) => {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography component='h1' variant='h6' color='inherit' noWrap className={classes.title}>
+                    <Typography component='h1' variant='h6' color='inherit' noWrap /* className={classes.title} */>
                         Dashboard
                     </Typography>
                     <IconButton color='inherit'>
