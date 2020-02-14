@@ -2,17 +2,15 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { makeStyles } from '@material-ui/core/styles'
 import Toolbar from '@material-ui/core/Toolbar'
-import Button from '@material-ui/core/Button'
+import Divider from '@material-ui/core/Divider'
 import Link from '@material-ui/core/Link'
+import Button from '@material-ui/core/Button'
 import Grid from '@material-ui/core/Grid'
 import LangButton from './components/LangButton'
 import LoginButton from './components/LoginButton'
 import Container from '@material-ui/core/Container'
 
 const useStyles = makeStyles(theme => ({
-    toolbar: {
-        borderBottom: `1px solid ${theme.palette.divider}`,
-    },
     toolbarTitle: {
         flex: 1,
     },
@@ -32,7 +30,7 @@ const Header = (props: any) => {
 
     return (
         <Container maxWidth='lg'>
-            <Toolbar className={classes.toolbar}>
+            <Toolbar>
                 <Grid container /* spacing={3} */>
                     <Grid item container xs={12} sm={9} justify='flex-start' alignItems='center'>
                         <Grid item>
@@ -51,6 +49,7 @@ const Header = (props: any) => {
                     </Grid>
                 </Grid>
             </Toolbar>
+
             <Toolbar component='nav' variant='dense' className={classes.toolbarSecondary}>
                 {sections.map((section: any) => (
                     <Link color='inherit' noWrap key={section.title} variant='body2' href={section.url} className={classes.toolbarLink}>
@@ -58,6 +57,8 @@ const Header = (props: any) => {
                     </Link>
                 ))}
             </Toolbar>
+            <Divider />
+            <br />
         </Container>
     )
 }
