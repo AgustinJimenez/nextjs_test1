@@ -13,7 +13,7 @@
 ### RUN SERVER ON DEV-MODE
 
 ```
-    yarn dev
+    yarn start
 ```
 
 ### EXPORT TO PRODUCTION
