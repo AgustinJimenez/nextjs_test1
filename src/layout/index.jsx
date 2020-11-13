@@ -1,29 +1,20 @@
 import './index.scss'
-import NavBar from './NavBar'
-import Footer from './Footer'
 import Head from 'next/head'
 import Document from 'next/document'
+import Container from 'react-bootstrap/Container'
 
 class Layout extends Document {
     state = {
         activeClass: '',
     }
 
-    componentDidMount() {
-        window.addEventListener('scroll', () => {
-            let activeClass = ''
-            if (window.scrollY > 100) {
-                activeClass = 'navbar-red'
-            }
-            this.setState({ activeClass })
-        })
-    }
+    componentDidMount() {}
 
     render() {
         return (
             <>
                 <Head>
-                    <title>De la Sobera</title>
+                    <title>Get my meal</title>
                     <meta charSet='utf-8' />
                     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
                     {/* <link href='https://fonts.googleapis.com/css?family=PT+Sans:400,700&display=swap' rel='stylesheet' /> */}
@@ -33,9 +24,9 @@ class Layout extends Document {
                     ></link>
                     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'></link>
                 </Head>
-                <NavBar {...this.props} activeClass={this.state.activeClass} />
-                <main>{this.props.children}</main>
-                <Footer />
+                <main>
+                    <Container fluid='md'>{this.props.children}</Container>
+                </main>
             </>
         )
     }
