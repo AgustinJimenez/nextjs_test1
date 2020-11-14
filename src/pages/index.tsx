@@ -71,11 +71,9 @@ const HomePage = (props: any) => {
                                                 { name: 'ingredient', label: 'Ingredient' },
                                                 { name: 'category', label: 'Category' },
                                             ].map(({ name, label }: any, key: number) => (
-                                                <>
-                                                    <Dropdown.Item key={key} active={search_meal_filter === name} onClick={() => setMealFilter(name)}>
-                                                        {label}
-                                                    </Dropdown.Item>
-                                                </>
+                                                <Dropdown.Item key={key} active={search_meal_filter === name} onClick={() => setMealFilter(name)}>
+                                                    {label}
+                                                </Dropdown.Item>
                                             ))}
                                         </Dropdown.Menu>
                                     </Dropdown>

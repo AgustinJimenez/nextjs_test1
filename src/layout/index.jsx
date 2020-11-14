@@ -1,4 +1,3 @@
-import './index.scss'
 import Head from 'next/head'
 import Document from 'next/document'
 import Container from 'react-bootstrap/Container'
