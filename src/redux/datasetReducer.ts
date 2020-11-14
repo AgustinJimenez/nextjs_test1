@@ -4,7 +4,7 @@ import initialState from './initialState'
 const debug: boolean = false
 
 const datasetReducer = (state: any = initialState, action: any) => {
-    let { type, data, dataset_name, options = { key: '', keyName: 'id' } } = action
+    let { type, data, dataset_name, options = { key: '', keyName: 'id', replaceList: false } } = action
     let keyName: string = options.keyName
     if (debug) console.log('REDUCERS - datasetReducer ===> ', { action })
     //throw 'REDUCER FETCH NAME IS REQUIRED'
@@ -19,6 +19,7 @@ const datasetReducer = (state: any = initialState, action: any) => {
 
         case SET_ITEM_TO_DATASET_LIST_REDUCER:
             if (!Array.isArray(data)) data = [data]
+            if (options.replaceList) state[dataset_name] = {}
             for (let item of data) if (!!item[keyName] && !!state[dataset_name]) state[dataset_name][item[keyName]] = item
 
             state = { ...state }

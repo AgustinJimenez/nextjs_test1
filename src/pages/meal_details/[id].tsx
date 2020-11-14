@@ -55,13 +55,16 @@ const ProductDetailsPage = (props: any) => {
     React.useEffect(() => {
         fetchMeal()
     }, [])
+    console.log('HERE ===> ', meal)
 
     return (
         <Layout>
             <Container className='my-5'>
                 <Row className='justify-content-md-center'>
                     <Col lg={6} md={12}>
-                        <h1 style={{ textAlign: 'center' }}>{meal.strMeal}</h1>
+                        <h1 className='text-light text-center'>
+                            <b>{meal?.strMeal}</b>
+                        </h1>
                         <Image src={meal.strMealThumb} thumbnail fluid />
                         <ListGroup>
                             {Object.keys(meal)
@@ -75,7 +78,7 @@ const ProductDetailsPage = (props: any) => {
                         </ListGroup>
                         <Container className='mt-3'>
                             <Link {...homePageRouteProps}>
-                                <Button block variant='outline-danger'>
+                                <Button block variant='danger'>
                                     Back
                                 </Button>
                             </Link>

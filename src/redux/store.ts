@@ -6,6 +6,8 @@ import { composeWithDevTools } from 'redux-devtools-extension'
 import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import logger from 'redux-logger'
+import createSagaMiddleware from 'redux-saga'
+import sagas from '../sagas'
 
 const persistConfig = {
     key: 'root',
@@ -16,7 +18,10 @@ const persistedReducer = persistReducer(persistConfig, reducer)
 let store: any
 
 function initStore(preloadedState = initialState) {
-    return createStore(persistedReducer, preloadedState, composeWithDevTools(applyMiddleware(logger)))
+    const sagaMiddleware = createSagaMiddleware()
+    let store = createStore(persistedReducer, preloadedState, composeWithDevTools(applyMiddleware(logger, sagaMiddleware)))
+    sagaMiddleware.run(sagas)
+    return store
 }
 
 export const initializeStore = (preloadedState: any) => {

@@ -1,10 +1,10 @@
 const getDataset = (state: any, datasetName: string) => state['datasets'][datasetName]
 
-export const datasetSelector = (state: string, datasetName: string, { list_format = false, ids = [], id = null }: any = {}) => {
+export const datasetSelector = (state: string, datasetName: string, { list_format = false, ids = null, id = null }: any = {}) => {
     //console.log('datasetSelector start ===> ', { datasetName, list_format, ids, id })
     let selected_dataset = getDataset(state, datasetName)
     if (!!id) return selected_dataset[id]
-    if (!!ids && ids.length) {
+    if (!!ids && Array.isArray(ids)) {
         let filtereds: any = {}
         for (let id of ids)
             if (!!selected_dataset[id]) {
@@ -13,7 +13,7 @@ export const datasetSelector = (state: string, datasetName: string, { list_forma
         selected_dataset = filtereds
     }
     //console.log('datasetSelector mid ===> ', { selected_dataset })
-    if (list_format) return Object.keys(selected_dataset || []).map(id => selected_dataset[id])
+    if (list_format) return Object.keys(selected_dataset || {}).map(id => selected_dataset[id])
 
     return selected_dataset
 }
