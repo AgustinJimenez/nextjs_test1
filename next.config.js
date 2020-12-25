@@ -3,8 +3,12 @@ const env = require('./env.json')
 const withPlugins = require('next-compose-plugins')
 const optimizedImages = require('next-optimized-images')
 const withFonts = require('next-fonts')
+const withOffline = require('next-offline')
 
 let config = {
+    orkboxOpts: {
+        generateInDevMode: true,
+    },
     images: {
         deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
         imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
@@ -57,5 +61,6 @@ const withBundleAnalyzer = require('@next/bundle-analyzer')({
 config = withBundleAnalyzer(config)
 config = withPlugins([[optimizedImages, config]])
 config = withFonts(config)
+config = withOffline(config)
 
 module.exports = config
