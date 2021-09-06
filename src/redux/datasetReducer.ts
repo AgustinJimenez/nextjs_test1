@@ -1,14 +1,21 @@
 import { DELETE_ITEM_FROM_DATASET_LIST_REDUCER, SET_ITEM_TO_DATASET_LIST_REDUCER, SET_ITEM_TO_DATASET_REDUCER } from './actions'
 import initialState from './initialState'
 
-const debug: boolean = false
+interface setDatasetOptions {
+    key?: string;
+    keyName?: string;
+    replaceList?: boolean;
+    debug?: boolean;
+}
+
+const defaultOptions: setDatasetOptions = { key: '', keyName: 'id', replaceList: false, debug: false }
 
 const datasetReducer = (state: any = initialState, action: any) => {
-    let { type, data, dataset_name, options = { key: '', keyName: 'id', replaceList: false } } = action
+    let { type, data, dataset_name, options = {} } = action
+    options = { ...defaultOptions, ...options }
     let keyName: string = options.keyName
-    if (debug) console.log('REDUCERS - datasetReducer ===> ', { action })
+    if (options?.debug) console.log('REDUCERS - datasetReducer ===> ', { action })
     //throw 'REDUCER FETCH NAME IS REQUIRED'
-
     switch (type) {
         case SET_ITEM_TO_DATASET_REDUCER:
             if (!dataset_name) state = { ...state, ...data }
@@ -18,9 +25,13 @@ const datasetReducer = (state: any = initialState, action: any) => {
             break
 
         case SET_ITEM_TO_DATASET_LIST_REDUCER:
+            if (!state[dataset_name]) state[dataset_name] = {}
             if (!Array.isArray(data)) data = [data]
             if (options.replaceList) state[dataset_name] = {}
-            for (let item of data) if (!!item[keyName] && !!state[dataset_name]) state[dataset_name][item[keyName]] = item
+            for (let item of data)
+                if (!!item[keyName] && !!state[dataset_name]) {
+                    state[dataset_name][item[keyName]] = item
+                }
 
             state = { ...state }
             break

@@ -3,17 +3,11 @@ import Document from 'next/document'
 import Container from 'react-bootstrap/Container'
 
 class Layout extends Document {
-    state = {
-        activeClass: '',
-    }
-
-    componentDidMount() {}
-
     render() {
         return (
             <>
                 <Head>
-                    <title>Get my meal</title>
+                    <title>Posts and comments</title>
                     <meta charSet='utf-8' />
                     <meta name='viewport' content='width=device-width, initial-scale=1, shrink-to-fit=no' />
                     <link

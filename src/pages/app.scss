@@ -392,3 +392,11 @@ footer {
     padding-bottom: 3px;
     margin-bottom: -3px;
 }
+
+.text-ouline-primary {
+    text-shadow:
+   -1px -1px 0 $primary,  
+    1px -1px 0 $primary,
+    -1px 1px 0 $primary,
+     1px 1px 0 $primary;
+}

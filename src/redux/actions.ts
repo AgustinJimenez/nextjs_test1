@@ -6,6 +6,7 @@ interface setDatasetOptions {
     key?: string;
     keyName?: string;
     replaceList?: boolean;
+    debug?: boolean;
 }
 
 const arrListToObjListParser = (data: any = []) => {
@@ -24,7 +25,7 @@ export const setDatasetToReducer = (data: any, dataset_name: string, options: se
     options,
 })
 
-export const setDatasetListToReducer = (dataList: any[], dataset_name: string, options: setDatasetOptions = {}) => ({
+export const setDatasetListToReducer = (dataList: any, dataset_name: string, options: setDatasetOptions = {}) => ({
     type: SET_ITEM_TO_DATASET_LIST_REDUCER,
     dataset_name,
     data: dataList,

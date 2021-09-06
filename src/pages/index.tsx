@@ -1,97 +1,56 @@
 import React from 'react'
 import Layout from '../layout'
-import MealCard from '../components/MealCard'
+import PostCard from '../components/PostCard'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import InputGroup from 'react-bootstrap/InputGroup'
-import FormControl from 'react-bootstrap/FormControl'
-import Button from 'react-bootstrap/Button'
-import Dropdown from 'react-bootstrap/Dropdown'
 import Navbar from 'react-bootstrap/Navbar'
 import { datasetSelector } from '../redux/selectors'
 import { useDispatch, useSelector } from 'react-redux'
-import { setDatasetListToReducer, setDatasetToReducer } from '../redux/actions'
-import { FaSearch, FaCheck } from 'react-icons/fa'
-import { sagaSearchMealAction } from '../sagas/actions'
+import { sagaFetchPostsAction } from '../sagas/actions'
 import { PaginatedList } from 'react-paginated-list'
+import PostInterface from '../interfaces/PostInterface'
 
 let searchTimer: any = null
 
 const HomePage = (props: any) => {
     const dispatch = useDispatch()
     const inputRef: any = React.useRef(null)
-    const searched_meals_ids: any = useSelector((state: any) => datasetSelector(state, 'searched_meals')) || []
-    const search_meal_filter: string = useSelector((state: any) => datasetSelector(state, 'search_meal_filter'))
-    const meals: any = useSelector((state: any) => datasetSelector(state, 'meals', { list_format: true, ids: searched_meals_ids }))
-    const search_input: any = useSelector((state: any) => datasetSelector(state, 'search_input'))
-    const fetchMeals = React.useCallback(() => dispatch(sagaSearchMealAction()), [])
-    const setMealFilter = React.useCallback((name: string) => {
-        dispatch(setDatasetToReducer(name, 'search_meal_filter'))
-        fetchMeals()
+    // const searched_meals_ids: any = useSelector((state: any) => datasetSelector(state, 'searched_meals')) || []
+    // const search_meal_filter: string = useSelector((state: any) => datasetSelector(state, 'search_meal_filter'))
+    const posts: PostInterface[] = useSelector((state: any) => datasetSelector(state, 'posts', { list_format: true }))
+    const fetchPosts = React.useCallback(() => dispatch(sagaFetchPostsAction()), [])
+    const init = React.useCallback(() => {
+        fetchPosts()
     }, [])
-    const setSearchInput = React.useCallback(
-        text => {
-            dispatch(setDatasetToReducer(text, 'search_input'))
-            clearTimeout(searchTimer)
-            searchTimer = setTimeout(() => {
-                fetchMeals()
-            }, 500)
-        },
-        [search_input],
-    )
+    React.useEffect(() => {
+        init()
+    }, [init])
+
     return (
         <Layout>
             <Container fluid>
-                <Navbar expand='lg' variant='light' bg='light'>
-                    <Container>
+                <Navbar expand='lg' sticky='top'>
+                    <Container className='bg-light rounded-bottom border shadow'>
                         <Navbar.Brand href='#'>
                             <p>
-                                <b>GET MY MEAL</b>
+                                <b className='h2 text-light font-weight-bold font-italic text-ouline-primary'>POSTS AND COMMENTS</b>
                             </p>
                         </Navbar.Brand>
                     </Container>
                 </Navbar>
                 <Container fluid className='pt-2'>
-                    <Row className='justify-content-md-center'>
-                        <Col xs={6}>
-                            <InputGroup className='mb-3'>
-                                <FormControl
-                                    ref={inputRef}
-                                    value={search_input}
-                                    placeholder='Search by name, ingredient or category.'
-                                    onChange={event => setSearchInput(event.target.value)}
-                                />
-                                <InputGroup.Append>
-                                    <Dropdown>
-                                        <Dropdown.Toggle variant='danger' />
-                                        <Dropdown.Menu>
-                                            {[
-                                                { name: 'name', label: 'Name' },
-                                                { name: 'ingredient', label: 'Ingredient' },
-                                                { name: 'category', label: 'Category' },
-                                            ].map(({ name, label }: any, key: number) => (
-                                                <Dropdown.Item key={key} active={search_meal_filter === name} onClick={() => setMealFilter(name)}>
-                                                    {label}
-                                                </Dropdown.Item>
-                                            ))}
-                                        </Dropdown.Menu>
-                                    </Dropdown>
-                                </InputGroup.Append>
-                            </InputGroup>
-                        </Col>
-                    </Row>
+                    <Row className='justify-content-md-center'></Row>
                 </Container>
-
                 <PaginatedList
-                    //controlItemClass='bg-'
-                    list={meals}
-                    itemsPerPage={6}
-                    renderList={meals => (
-                        <Row style={{}}>
-                            {meals.map((meal: any, key: number) => (
-                                <Col lg='4' md='12' key={key} style={{ marginTop: '3rem', marginBottom: '3rem' }}>
-                                    <MealCard meal={meal} key={key} />
+                    list={posts}
+                    controlClass='pb-5'
+                    controlItemClass='bg-primary text-white border-top-0 border-bottom-0 border-end-1 shadow'
+                    renderList={(posts: PostInterface[]) => (
+                        <Row>
+                            {posts.map(({ id }: PostInterface, key: number) => (
+                                <Col xs='12' md={{ offset: 3, span: 6 }} key={key} className='my-3'>
+                                    <PostCard id={id} />
                                 </Col>
                             ))}
                         </Row>
