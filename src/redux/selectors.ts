@@ -23,6 +23,6 @@ export const datasetSelector = (state: any, datasetName: string, { list_format =
 export const commentsByPostIdSelector = (state: any, postId: number): CommentInterface[] => {
     let comments: CommentInterface[] = datasetSelector(state, 'comments', { list_format: true })
         .filter((comment: CommentInterface) => comment['postId'] === postId)
-        .sort((a: CommentInterface, b: CommentInterface) => b.id - a.id)
+        .sort((a: CommentInterface, b: CommentInterface) => +b.id - +a.id)
     return comments
 }

@@ -45,7 +45,7 @@ const PostPage = (props: any) => {
                 <Row>
                     <Col xs={12} md={{ offset: 3, span: 6 }}>
                         <PostCard id={id} />
-                        <Card className='mt-4 bg-light'>
+                        <Card className='mt-4 bg-light border-0'>
                             <Card.Header className='bg-primary text-white'>{comments?.length || 0} Comments</Card.Header>
                             <ListGroup>
                                 <ListGroup.Item>
@@ -73,8 +73,8 @@ const PostPage = (props: any) => {
                                         </Row>
                                     </Form>
                                 </ListGroup.Item>
-                                {comments.map((comment: CommentInterface) => (
-                                    <ListGroup.Item>
+                                {comments.map((comment: CommentInterface, key: number) => (
+                                    <ListGroup.Item key={key}>
                                         {comment.body}
                                         <blockquote className='blockquote mb-0 mt-4 bg-white'>
                                             <span className='blockquote-footer text-right'>
