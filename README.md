@@ -16,6 +16,12 @@
 ```
     yarn dev
 ```
+
+#### RUN TESTS
+
+```
+    yarn test
+```
 # LIBRARIES
 
 - NextJS
@@ -104,5 +110,3 @@ src/redux/actions.ts
 ```
 src/redux/selectors.ts 
 ```
-
-### No Tests available yet
