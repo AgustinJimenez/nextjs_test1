@@ -8,12 +8,11 @@ describe('Home page', () => {
             route: '/',
         })
         render()
-        await screen.findByTestId('layout')
         const layout = await screen.findByTestId('layout')
         expect(layout).toBeInTheDocument()
         const pageTitle = await screen.findByTestId('home-title')
-        const listPostItems = await screen.findAllByTestId('list-post-item')
         expect(pageTitle).toBeInTheDocument()
+        const listPostItems = await screen.findAllByTestId('list-post-item')
         expect(listPostItems.length).toBeGreaterThan(0)
         for (let listPostItem of listPostItems) {
             expect(listPostItem).toBeInTheDocument()
