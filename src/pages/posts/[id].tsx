@@ -19,16 +19,16 @@ const PostPage = (props: any) => {
     const post = useSelector((state: any) => datasetSelector(state, 'posts', { id }))
     const dispatch = useDispatch()
     const comments: CommentInterface[] = useSelector((state: any) => commentsByPostIdSelector(state, id))
-    const new_comment: string = useSelector((state: any) => datasetSelector(state, 'new_comment'))
+    const newComment: string = useSelector((state: any) => datasetSelector(state, 'new_comment'))
     const addNewComment = React.useCallback(() => {
-        if (!!new_comment)
+        if (!!newComment)
             dispatch(
                 sagaAddNewCommentToPostAction({
                     postId: id,
-                    message: new_comment,
+                    message: newComment,
                 }),
             )
-    }, [new_comment])
+    }, [newComment])
     const updateNewCommentText = React.useCallback((text: string) => {
         dispatch(setDatasetToReducer(text, 'new_comment'))
     }, [])
@@ -58,7 +58,7 @@ const PostPage = (props: any) => {
                                                 as='textarea'
                                                 rows={3}
                                                 placeholder='Write a comment...'
-                                                value={new_comment}
+                                                value={newComment}
                                                 onChange={(event: any) => updateNewCommentText(event?.target?.value)}
                                                 data-testid='comment-textbox'
                                             />
