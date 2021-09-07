@@ -50,6 +50,10 @@ To use sass for components styles
 ```
 It analyze and generates a bundle files size report
 ```
+- Jest & Testing library
+```
+Useful for unit tests
+```
 # PROJECT DETAILS
 
 - Api url routes
