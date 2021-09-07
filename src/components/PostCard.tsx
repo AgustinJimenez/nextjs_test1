@@ -2,23 +2,24 @@ import React from 'react'
 import Card from 'react-bootstrap/Card'
 import { postPageRouteProps } from '../routes'
 import Link from 'next/link'
-import { useSelector } from 'react-redux'
-import { datasetSelector } from '../redux/selectors'
 
 interface PostCardProps {
     id: number;
+    title: string;
+    body: string;
 }
 
-const PostCard = ({ id }: PostCardProps) => {
-    const post = useSelector((state: any) => datasetSelector(state, 'posts', { id }))
+const PostCard = ({ id, title, body }: PostCardProps) => {
     return (
-        <Link {...postPageRouteProps({ query: post, id: post?.id })}>
-            <Card style={{ cursor: 'pointer' }} className='shadow border-0'>
+        <Link {...postPageRouteProps({ id })}>
+            <Card style={{ cursor: 'pointer' }} className='shadow border-0' data-testid='list-post-item'>
                 <Card.Header className='bg-primary'>
-                    <Card.Title className='text-capitalize text-white'>{post?.title}</Card.Title>
+                    <Card.Title className='text-capitalize text-white' data-testid='card-post-title'>
+                        {title}
+                    </Card.Title>
                 </Card.Header>
                 <Card.Body>
-                    <Card.Text>{post?.body}</Card.Text>
+                    <Card.Text data-testid='card-post-body'>{body}</Card.Text>
                 </Card.Body>
             </Card>
         </Link>

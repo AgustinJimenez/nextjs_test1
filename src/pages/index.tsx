@@ -11,13 +11,8 @@ import { sagaFetchPostsAction } from '../sagas/actions'
 import { PaginatedList } from 'react-paginated-list'
 import PostInterface from '../interfaces/PostInterface'
 
-let searchTimer: any = null
-
-const HomePage = (props: any) => {
+const HomePage = () => {
     const dispatch = useDispatch()
-    const inputRef: any = React.useRef(null)
-    // const searched_meals_ids: any = useSelector((state: any) => datasetSelector(state, 'searched_meals')) || []
-    // const search_meal_filter: string = useSelector((state: any) => datasetSelector(state, 'search_meal_filter'))
     const posts: PostInterface[] = useSelector((state: any) => datasetSelector(state, 'posts', { list_format: true }))
     const fetchPosts = React.useCallback(() => dispatch(sagaFetchPostsAction()), [])
     const init = React.useCallback(() => {
@@ -34,7 +29,9 @@ const HomePage = (props: any) => {
                     <Container className='bg-light rounded-bottom border shadow'>
                         <Navbar.Brand href='#'>
                             <p>
-                                <b className='h2 text-light font-weight-bold font-italic text-ouline-primary'>POSTS AND COMMENTS</b>
+                                <b className='h2 text-light font-weight-bold font-italic text-ouline-primary' data-testid='home-title'>
+                                    POSTS AND COMMENTS
+                                </b>
                             </p>
                         </Navbar.Brand>
                     </Container>
@@ -48,9 +45,9 @@ const HomePage = (props: any) => {
                     controlItemClass='bg-primary text-white border-top-0 border-bottom-0 border-end-1 shadow'
                     renderList={(posts: PostInterface[]) => (
                         <Row>
-                            {posts.map(({ id }: PostInterface, key: number) => (
+                            {posts.map(({ id, title, body }: PostInterface, key: number) => (
                                 <Col xs='12' md={{ offset: 3, span: 6 }} key={key} className='my-3'>
-                                    <PostCard id={id} />
+                                    <PostCard id={id} title={title} body={body} />
                                 </Col>
                             ))}
                         </Row>

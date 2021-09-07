@@ -4,7 +4,7 @@ import { SAGA_FETCH_POSTS } from './actions'
 import { setDatasetListToReducer } from '../redux/actions'
 import { postsUrl } from '../api/routes'
 
-function* fetchPosts() {
+export function* fetchPosts() {
     let { data, error } = yield call(request, { url: postsUrl })
     if (error) return
     yield put(setDatasetListToReducer(data || [], 'posts', { replaceList: true }))

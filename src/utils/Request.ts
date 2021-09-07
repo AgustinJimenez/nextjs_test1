@@ -1,4 +1,3 @@
-//import fetch from 'isomorphic-unfetch'
 import { AxiosRequestConfig } from 'axios'
 import { axiosInstance } from '../api'
 

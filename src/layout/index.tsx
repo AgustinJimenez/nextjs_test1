@@ -2,7 +2,7 @@ import Head from 'next/head'
 import Document from 'next/document'
 import Container from 'react-bootstrap/Container'
 
-class Layout extends Document {
+class LayoutBase extends Document {
     render() {
         return (
             <>
@@ -17,11 +17,13 @@ class Layout extends Document {
                     <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css'></link>
                 </Head>
                 <main>
-                    <Container>{this.props.children}</Container>
+                    <Container data-testid='layout'>{this.props.children}</Container>
                 </main>
             </>
         )
     }
 }
+
+const Layout = (props: any) => <LayoutBase {...props} />
 
 export default Layout

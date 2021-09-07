@@ -1,30 +1,56 @@
-### INSTALL DEPENDENCIES
+# INSTALLATION GUIDE
+#### INSTALL DEPENDENCIES
 
 ```
     yarn
 ```
 
-### CREATE .ENV
+#### CREATE ENVIROMENT VARIABLES FILE
 
 ```
     cp env.example.json env.json
 ```
 
-### RUN SERVER ON DEV-MODE
+#### RUN SERVER ON DEV-MODE
 
 ```
-    yarn start
+    yarn dev
 ```
+# LIBRARIES
 
-### EXPORT TO PRODUCTION
-
+- NextJS
 ```
-    yarn build
+Gives you all the features you need for production: hybrid static & server rendering, TypeScript support, smart bundling, route pre-fetching, and more. No config needed.
 ```
-
-
-
-### PROJECT DETAILS
+- React Bootstrap
+```
+Easy to install and use on react projects without unneeded dependencies like jQuery.
+```
+- Redux-Saga
+```
+Write complex business logics outside the components jungle, enable numerous approaches to tackling parallel execution, task concurrency, task racing, task cancellation, etc.
+```
+- Redux Persist
+```
+Enables persistence with redux storage.
+```
+- Redux Logger
+```
+Logs all redux actions
+```
+- React Paginated List
+```
+To paginate data collections
+```
+- Sass & Styled Components
+```
+To use sass for components styles
+```
+- Bundle Analyzer
+```
+It analyze and generates a bundle files size report
+```
+# PROJECT DETAILS
 
 - Api url routes
 ```
@@ -42,12 +68,23 @@ src/routes
 ```
 src/components
 ```
----
-- App core (to include providers)
+- App core (for providers)
 ```
 src/pages/_app.tsx
 ```
-#### Redux uses only one generic reducer to manage datas
+- Public folder for assets
+```
+public
+```
+- Helpers methods
+```
+src/utils
+```
+- Project core configurations, webpack configurations and plugins
+```
+next.config.js
+```
+- Project uses only one generic reducer to manage store datas
 ```
 src/redux/datasetReducer.ts
 ````
@@ -55,13 +92,13 @@ src/redux/datasetReducer.ts
 ```
 src/redux/initialState.ts
 ```
-- Redux Actions
+- Redux Actions (mostly just generic actions for data management)
 ```
 src/redux/actions.ts
 ```
-- Redux Store Selectors
+- Redux Store Selectors (generic selector and complex selectors)
 ```
-src/redux/selectors.ts
+src/redux/selectors.ts 
 ```
 
 ### No Tests available yet

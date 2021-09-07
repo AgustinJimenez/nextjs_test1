@@ -1,9 +1,8 @@
-const withSass = require('@zeit/next-sass')
 const env = require('./env.json')
-const withPlugins = require('next-compose-plugins')
-const optimizedImages = require('next-optimized-images')
-const withFonts = require('next-fonts')
-const withOffline = require('next-offline')
+// const withPlugins = require('next-compose-plugins')
+// const optimizedImages = require('next-optimized-images')
+// const withFonts = require('next-fonts')
+// const withOffline = require('next-offline')
 
 let config = {
     orkboxOpts: {
@@ -34,33 +33,17 @@ let config = {
             },
         })
 
-        config.module.rules.push({
-            test: /\.md$/,
-            use: [
-                {
-                    loader: 'html-loader',
-                },
-                {
-                    loader: 'markdown-loader',
-                    options: {
-                        /* your options here */
-                    },
-                },
-            ],
-        })
-
         return config
     },
 }
-config = withSass(config)
 
 const withBundleAnalyzer = require('@next/bundle-analyzer')({
     enabled: process.env.ANALYZE === 'true',
 })
 
 config = withBundleAnalyzer(config)
-config = withPlugins([[optimizedImages, config]])
-config = withFonts(config)
-config = withOffline(config)
+// config = withPlugins([[optimizedImages, config]])
+// config = withFonts(config)
+// config = withOffline(config)
 
 module.exports = config
