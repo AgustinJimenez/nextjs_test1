@@ -44,58 +44,56 @@ const PostPage = (props: any) => {
     }, [])
     return (
         <Layout>
-            <Container className='my-5 pb-5'>
-                <Row>
-                    <Col xs={12} md={{ offset: 3, span: 6 }}>
-                        <PostCard id={post.id} title={post.title} body={post.body} />
-                        <Card className='mt-4 bg-light border-0' data-testid='list-comments'>
-                            <Card.Header className='bg-primary text-white'>{comments?.length || 0} Comments</Card.Header>
-                            <ListGroup>
-                                <ListGroup.Item>
-                                    <Form>
-                                        <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
-                                            <Form.Control
-                                                as='textarea'
-                                                rows={3}
-                                                placeholder='Write a comment...'
-                                                value={newComment}
-                                                onChange={(event: any) => updateNewCommentText(event?.target?.value)}
-                                                data-testid='comment-textbox'
-                                            />
-                                        </Form.Group>
-                                        <Row>
-                                            <Col xs={12} md={{ offset: 6, span: 3 }}>
-                                                <Button variant='outline-primary' block onClick={() => updateNewCommentText('')} data-testid='cancel-button'>
-                                                    Cancel
-                                                </Button>
-                                            </Col>
-                                            <Col xs={12} md={3}>
-                                                <Button variant='primary' block onClick={addNewComment} data-testid='post-button'>
-                                                    Post
-                                                </Button>
-                                            </Col>
-                                        </Row>
-                                    </Form>
+            <Row className='my-5 pb-5 justify-content-center'>
+                <Col xs={12} md={8} lg={6}>
+                    <PostCard id={post.id} title={post.title} body={post.body} />
+                    <Card className='mt-4 bg-light border-0' data-testid='list-comments'>
+                        <Card.Header className='bg-primary text-white'>{comments?.length || 0} Comments</Card.Header>
+                        <ListGroup>
+                            <ListGroup.Item>
+                                <Form>
+                                    <Form.Group className='mb-3' controlId='exampleForm.ControlTextarea1'>
+                                        <Form.Control
+                                            as='textarea'
+                                            rows={3}
+                                            placeholder='Write a comment...'
+                                            value={newComment}
+                                            onChange={(event: any) => updateNewCommentText(event?.target?.value)}
+                                            data-testid='comment-textbox'
+                                        />
+                                    </Form.Group>
+                                    <Row className='justify-content-end'>
+                                        <Col xs={12} sm={3}>
+                                            <Button variant='outline-primary' block onClick={() => updateNewCommentText('')} data-testid='cancel-button'>
+                                                Cancel
+                                            </Button>
+                                        </Col>
+                                        <Col xs={12} sm={3} className='mt-3 mt-sm-0'>
+                                            <Button variant='primary' block onClick={addNewComment} data-testid='post-button'>
+                                                Post
+                                            </Button>
+                                        </Col>
+                                    </Row>
+                                </Form>
+                            </ListGroup.Item>
+                            {comments.map((comment: CommentInterface, key: number) => (
+                                <ListGroup.Item key={key}>
+                                    <div data-testid='list-comments-item'>
+                                        <span data-testid='list-comments-item-body'>{comment.body}</span>
+                                        <blockquote className='blockquote mb-0 mt-4 bg-white'>
+                                            <span className='blockquote-footer text-right'>
+                                                <cite title='Source Title' data-testid='list-comments-item-email'>
+                                                    {comment.email}
+                                                </cite>
+                                            </span>
+                                        </blockquote>
+                                    </div>
                                 </ListGroup.Item>
-                                {comments.map((comment: CommentInterface, key: number) => (
-                                    <ListGroup.Item key={key}>
-                                        <div data-testid='list-comments-item'>
-                                            <span data-testid='list-comments-item-body'>{comment.body}</span>
-                                            <blockquote className='blockquote mb-0 mt-4 bg-white'>
-                                                <span className='blockquote-footer text-right'>
-                                                    <cite title='Source Title' data-testid='list-comments-item-email'>
-                                                        {comment.email}
-                                                    </cite>
-                                                </span>
-                                            </blockquote>
-                                        </div>
-                                    </ListGroup.Item>
-                                ))}
-                            </ListGroup>
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
+                            ))}
+                        </ListGroup>
+                    </Card>
+                </Col>
+            </Row>
         </Layout>
     )
 }
