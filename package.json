@@ -4,9 +4,8 @@
   "description": "Some test here",
   "main": "index.tsx",
   "scripts": {
-    "dev": "next dev",
+    "start": "next dev",
     "build": "next build",
-    "start": "next start",
     "export": "next export",
     "test": "jest --watch",
     "build:analyse": "ANALYZE=true yarn build",
