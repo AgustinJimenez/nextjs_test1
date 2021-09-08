@@ -1,8 +1,7 @@
-import { takeLatest, select, put } from 'redux-saga/effects'
+import { takeLatest, put } from 'redux-saga/effects'
 import { SAGA_ADD_NEW_COMMENT_TO_POST } from './actions'
 import { setDatasetListToReducer, setDatasetToReducer } from '../redux/actions'
 import CommentInterface from '../interfaces/CommentInterface'
-import { commentsByPostIdSelector } from '../redux/selectors'
 
 function* sagaAddNewCommentToPost({ postId, message }: any) {
     const comment: CommentInterface = {
